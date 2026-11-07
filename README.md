@@ -3,7 +3,12 @@
 App multiplataforma em **.NET MAUI** (Android e Windows) para acompanhar as UCs do curso CET em Tecnologias e Programação de Sistemas de Informação (TPSI): horas assistidas, avaliações, lembretes e notas.
 
 Projeto de código aberto. Os dados são armazenados exclusivamente de forma local no dispositivo.
-
+<p align="center">
+  <img src="docs/ucs.jpg" alt="Lista de UCs" width="22%">
+  <img src="docs/detalhe.jpg" alt="Detalhe da UC" width="22%">
+  <img src="docs/agenda.jpg" alt="Agenda de avaliações" width="22%">
+  <img src="docs/notas.jpg" alt="Notas" width="22%">
+</p>
 ---
 
 ## 🚀 Funcionalidades
