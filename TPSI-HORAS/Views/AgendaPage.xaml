@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TPSI_HORAS.Models"
+             xmlns:vm="clr-namespace:TPSI_HORAS.ViewModels"
+             x:Class="TPSI_HORAS.Views.AgendaPage"
+             x:DataType="vm:AgendaViewModel"
+             Title="Agenda">
+
+    <Grid RowDefinitions="*,Auto" Padding="16,8" RowSpacing="12">
+
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Avaliacoes}" SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <Label Text="Ainda não marcaste nenhuma avaliação."
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AvaliacaoItem">
+                    <Border Padding="12"
+                            StrokeShape="RoundRectangle 12"
+                            Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold" />
+                                <Label Text="{Binding QuandoTexto}" FontSize="12" />
+                                <Label Text="{Binding Notas}" FontSize="12" IsVisible="{Binding TemNotas}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="6" HorizontalOptions="End">
+                                <Label Text="{Binding Prazo}" FontAttributes="Bold" HorizontalOptions="End" />
+                                <Button Text="Apagar"
+                                        FontSize="12"
+                                        Padding="10,0"
+                                        HeightRequest="34"
+                                        Clicked="AoApagar" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1" Text="+ Nova avaliação" Command="{Binding NovaCommand}" />
+    </Grid>
+</ContentPage>

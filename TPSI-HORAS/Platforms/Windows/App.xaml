@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="TPSI_HORAS.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:TPSI_HORAS.WinUI">
+
+</maui:MauiWinUIApplication>

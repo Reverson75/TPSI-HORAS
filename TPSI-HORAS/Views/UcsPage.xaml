@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TPSI_HORAS.Models"
+             xmlns:vm="clr-namespace:TPSI_HORAS.ViewModels"
+             x:Class="TPSI_HORAS.Views.UcsPage"
+             x:DataType="vm:UcsViewModel"
+             Title="As minhas UCs">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16,8" RowSpacing="8">
+
+        <Label Grid.Row="0"
+               Text="{Binding TextoGlobal}"
+               FontSize="13"
+               TextColor="{AppThemeBinding Light=#555555, Dark=#BBBBBB}" />
+
+        <SearchBar Grid.Row="1"
+                   Placeholder="Procurar UC"
+                   Text="{Binding Pesquisa}" />
+
+        <CollectionView Grid.Row="2"
+                ItemsSource="{Binding Ucs}"
+                SelectionMode="Single"
+                SelectionChanged="AoSelecionar">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:UcResumo">
+                    <Border Padding="12"
+                            StrokeShape="RoundRectangle 12"
+                            Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+                        <VerticalStackLayout Spacing="4">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Codigo}" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Text="{Binding TextoHoras}" FontSize="12" />
+                            </Grid>
+                            <Label Text="{Binding Nome}" FontSize="13" />
+                            <ProgressBar Progress="{Binding Progresso}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

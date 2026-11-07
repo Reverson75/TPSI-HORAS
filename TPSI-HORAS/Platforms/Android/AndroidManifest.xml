@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	<application
+		android:allowBackup="false"
+		android:icon="@mipmap/appicon"
+		android:roundIcon="@mipmap/appicon_round"
+		android:supportsRtl="true"></application>
+
+	<!-- Mostrar notificações (pedida em execução no Android 13+) -->
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+	<!-- Disparar o lembrete à hora certa -->
+	<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+	<uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+	<!-- Repor os lembretes depois de reiniciar o telemóvel -->
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+</manifest>

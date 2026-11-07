@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TPSI_HORAS.Models"
+             xmlns:vm="clr-namespace:TPSI_HORAS.ViewModels"
+             x:Class="TPSI_HORAS.Views.UcDetalhePage"
+             x:DataType="vm:UcDetalheViewModel"
+             Title="{Binding Resumo.Codigo}">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*"
+          Padding="16,8"
+          RowSpacing="12">
+
+        <Label Grid.Row="0" Text="{Binding Resumo.Nome}" FontSize="14" />
+
+        <Border Grid.Row="1"
+                Padding="16"
+                StrokeShape="RoundRectangle 12"
+                Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+            <VerticalStackLayout Spacing="6">
+                <Label Text="{Binding Resumo.TextoHoras}"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Resumo.HorasEmFalta, StringFormat='Faltam {0} horas'}"
+                       HorizontalOptions="Center" />
+                <ProgressBar Progress="{Binding Resumo.Progresso}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Label Grid.Row="2" Text="Abater horas assistidas" FontAttributes="Bold" />
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Text="+1 h"
+                    Command="{Binding AbaterCommand}" CommandParameter="1" />
+            <Button Grid.Column="1" Text="+2 h"
+                    Command="{Binding AbaterCommand}" CommandParameter="2" />
+            <Button Grid.Column="2" Text="+3 h"
+                    Command="{Binding AbaterCommand}" CommandParameter="3" />
+            <Button Grid.Column="3" Text="Outro"
+                    Command="{Binding AbaterOutroCommand}" />
+        </Grid>
+
+        <Border Grid.Row="4"
+                Padding="12"
+                StrokeShape="RoundRectangle 12"
+                Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6">
+                <Label Grid.Row="0" Grid.Column="0" Text="Próxima avaliação" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding ProximaTexto}" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Nota da UC" FontAttributes="Bold" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding NotaTexto}" />
+            </Grid>
+        </Border>
+
+        <Label Grid.Row="5" Text="Histórico" FontAttributes="Bold" />
+
+        <CollectionView Grid.Row="6" ItemsSource="{Binding Historico}" SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Label Text="Ainda sem horas registadas." HorizontalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:RegistoHoras">
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12" Padding="4,2">
+                        <Label Grid.Column="0"
+                               Text="{Binding Data, StringFormat='{0:dd/MM/yyyy}'}"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Horas, StringFormat='{0} h'}"
+                               VerticalOptions="Center" />
+                        <Button Grid.Column="2"
+                                Text="Apagar"
+                                FontSize="12"
+                                Padding="10,0"
+                                HeightRequest="34"
+                                Clicked="AoApagar" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

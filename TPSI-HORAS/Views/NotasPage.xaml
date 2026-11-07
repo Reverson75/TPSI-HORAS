@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TPSI_HORAS.Models"
+             xmlns:vm="clr-namespace:TPSI_HORAS.ViewModels"
+             x:Class="TPSI_HORAS.Views.NotasPage"
+             x:DataType="vm:NotasViewModel"
+             Title="Notas">
+
+    <Grid RowDefinitions="Auto,*" Padding="16,8" RowSpacing="12">
+
+        <Border Grid.Row="0"
+                Padding="16"
+                StrokeShape="RoundRectangle 12"
+                Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+            <VerticalStackLayout Spacing="2">
+                <Label Text="{Binding MediaTexto}"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="média das UCs com nota" HorizontalOptions="Center" FontSize="12" />
+                <Label Text="{Binding ResumoTexto}" HorizontalOptions="Center" FontSize="12" />
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Notas}" SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:NotaItem">
+                    <Border Padding="12"
+                            StrokeShape="RoundRectangle 12"
+                            Stroke="{AppThemeBinding Light=#DDDDDD, Dark=#444444}">
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding Codigo}" FontAttributes="Bold" />
+                                <Label Text="{Binding Nome}" FontSize="12" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding NotaTexto}"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+
+                            <Button Grid.Column="2"
+                                    Text="Editar"
+                                    FontSize="12"
+                                    Padding="10,0"
+                                    HeightRequest="34"
+                                    Clicked="AoEditar" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
