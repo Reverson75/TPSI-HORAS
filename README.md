@@ -26,19 +26,23 @@ Projeto de código aberto. Os dados são armazenados exclusivamente de forma loc
 - Visual Studio 2026 com carga de trabalho **.NET MAUI** e **.NET 10 SDK**.
 
 ### Publicar APK Assinado (PowerShell)
-```powershell
+` ` `powershell
 cd TPSI-HORAS
 $s = Read-Host "Password da keystore" -AsSecureString
 $env:ANDROID_PASS = (New-Object System.Net.NetworkCredential("", $s)).Password
 dotnet publish -f net10.0-android -c Release -p:AndroidPackageFormat=apk -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=F:\chaves\tpsi-horas.keystore -p:AndroidSigningKeyAlias=tpsi-horas -p:AndroidSigningKeyPass=env:ANDROID_PASS -p:AndroidSigningStorePass=env:ANDROID_PASS
 Remove-Item Env:ANDROID_PASS
+` ` `
 
-🔒 Privacidade
-100% Offline: Sem servidores externos ou recolha de dados.
+---
 
-A versão Release não solicita permissões de internet.
+## 🔒 Privacidade
+- **100% Offline:** Sem servidores externos ou recolha de dados.
+- A versão Release **não** solicita permissões de internet.
 
-📄 Licença
-Distribuído sob a licença MIT. Veja o ficheiro LICENSE para mais detalhes.
+---
 
-Desenvolvido por Reverson no âmbito do CET em TPSI.
+## 📄 Licença
+Distribuído sob a licença **MIT**. Veja o ficheiro [LICENSE](LICENSE) para mais detalhes.
+
+Desenvolvido por **Reverson** no âmbito do CET em TPSI.
